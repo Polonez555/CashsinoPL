@@ -1,0 +1,40 @@
+{
+  "name": "cashsinopl",
+  "version": "1.0.0",
+  "description": "Online casino platform with Roulette, Blackjack, and Uno - Multiplayer support",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "lint-check": "eslint src/**/*.ts app/**/*.ts",
+    "format-check": "prettier --check src/**/*.ts app/**/*.ts",
+    "test": "jest",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:e2e": "testcafe chrome tests/e2e"
+  },
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@types/supertest": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.0",
+    "eslint-config-prettier": "^9.1.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.2.0",
+    "supertest": "^6.3.0",
+    "testcafe": "^3.7.4",
+    "ts-jest": "^29.1.0",
+    "typescript": "^5.4.0"
+  }
+}
