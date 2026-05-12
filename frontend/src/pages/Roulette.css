@@ -1,0 +1,59 @@
+.roulette-page {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.roulette-title {
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+
+.roulette-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+.roulette-placeholder {
+  background: var(--card-bg);
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 4rem 2rem;
+  max-width: 540px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.wheel-icon {
+  font-size: 5rem;
+}
+
+.api-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #0d1117;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.api-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3fb950;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+code {
+  color: var(--text);
+  font-family: monospace;
+}
