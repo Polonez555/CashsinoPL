@@ -1,0 +1,24 @@
+{
+  "name": "cashsinopl-backend",
+  "version": "1.0.0",
+  "description": "CashsinoPL Express.js backend API",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage --forceExit",
+    "test:unit": "jest tests/unit --coverage --forceExit",
+    "test:integration": "jest tests/integration --forceExit",
+    "lint": "eslint src tests"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^6.3.4"
+  }
+}
