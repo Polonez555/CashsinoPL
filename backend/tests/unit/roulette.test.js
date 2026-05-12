@@ -1,4 +1,4 @@
-const { spin, evaluateBet, getColor, RED_NUMBERS, BLACK_NUMBERS } = require('../../src/games/roulette');
+const { spin, evaluateBet, getColor, getDozen, getColumn, RED_NUMBERS, BLACK_NUMBERS } = require('../../src/games/roulette');
 
 describe('getColor', () => {
   test('returns green for 0', () => {
@@ -53,7 +53,7 @@ describe('spin', () => {
 });
 
 describe('evaluateBet', () => {
-  const result = { number: 7, color: 'red', parity: 'odd', range: 'low' };
+  const result = { number: 7, color: 'red', parity: 'odd', range: 'low', dozen: 1, column: 1 };
 
   test('straight bet wins on correct number with 35x payout', () => {
     const outcome = evaluateBet(result, { type: 'straight', value: 7, amount: 10 });
@@ -91,7 +91,57 @@ describe('evaluateBet', () => {
     expect(outcome.won).toBe(true);
   });
 
+  test('dozen bet wins (7 is in 1st dozen)', () => {
+    const outcome = evaluateBet(result, { type: 'dozen', value: 1, amount: 10 });
+    expect(outcome.won).toBe(true);
+    expect(outcome.payout).toBe(30);
+    expect(outcome.profit).toBe(20);
+  });
+
+  test('dozen bet loses on wrong dozen', () => {
+    const outcome = evaluateBet(result, { type: 'dozen', value: 2, amount: 10 });
+    expect(outcome.won).toBe(false);
+    expect(outcome.profit).toBe(-10);
+  });
+
+  test('column bet wins (7 is in column 1)', () => {
+    const outcome = evaluateBet(result, { type: 'column', value: 1, amount: 10 });
+    expect(outcome.won).toBe(true);
+    expect(outcome.payout).toBe(30);
+  });
+
+  test('column bet loses on wrong column', () => {
+    const outcome = evaluateBet(result, { type: 'column', value: 2, amount: 10 });
+    expect(outcome.won).toBe(false);
+  });
+
   test('throws on unknown bet type', () => {
     expect(() => evaluateBet(result, { type: 'unknown', value: 'x', amount: 10 })).toThrow('Unknown bet type');
+  });
+});
+
+describe('getDozen', () => {
+  test('returns null for 0', () => { expect(getDozen(0)).toBeNull(); });
+  test('returns 1 for numbers 1-12', () => {
+    for (let i = 1; i <= 12; i++) expect(getDozen(i)).toBe(1);
+  });
+  test('returns 2 for numbers 13-24', () => {
+    for (let i = 13; i <= 24; i++) expect(getDozen(i)).toBe(2);
+  });
+  test('returns 3 for numbers 25-36', () => {
+    for (let i = 25; i <= 36; i++) expect(getDozen(i)).toBe(3);
+  });
+});
+
+describe('getColumn', () => {
+  test('returns null for 0', () => { expect(getColumn(0)).toBeNull(); });
+  test('column 1: 1,4,7,10,...,34', () => {
+    [1,4,7,10,13,16,19,22,25,28,31,34].forEach(n => expect(getColumn(n)).toBe(1));
+  });
+  test('column 2: 2,5,8,11,...,35', () => {
+    [2,5,8,11,14,17,20,23,26,29,32,35].forEach(n => expect(getColumn(n)).toBe(2));
+  });
+  test('column 3: 3,6,9,12,...,36', () => {
+    [3,6,9,12,15,18,21,24,27,30,33,36].forEach(n => expect(getColumn(n)).toBe(3));
   });
 });

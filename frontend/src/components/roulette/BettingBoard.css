@@ -1,0 +1,134 @@
+.betting-board {
+  background: #0a3d1a;
+  border: 2px solid #c8a84b;
+  border-radius: 10px;
+  padding: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  user-select: none;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.betting-board--disabled {
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* ── Base cell ────────────────────────────────────────── */
+.board-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(200, 168, 75, 0.35);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s, box-shadow 0.15s;
+  min-height: 32px;
+}
+
+.board-cell:hover:not(.disabled) {
+  filter: brightness(1.35);
+  transform: scale(1.06);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.6);
+  z-index: 1;
+}
+
+.board-cell.selected {
+  outline: 2px solid #ffd700;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+  transform: scale(1.08);
+}
+
+.board-cell.disabled {
+  cursor: default;
+}
+
+/* ── Zero row ─────────────────────────────────────────── */
+.board-zero-row {
+  display: flex;
+}
+
+.zero-cell {
+  flex: 1;
+  background: #1c6e3d;
+  color: #fff;
+  font-size: 0.95rem;
+  min-height: 34px;
+}
+
+/* ── Number grid ──────────────────────────────────────── */
+.board-grid-area {
+  display: flex;
+  gap: 3px;
+}
+
+.board-numbers {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.board-row {
+  display: flex;
+  gap: 3px;
+}
+
+.num-cell {
+  flex: 1;
+  font-size: 0.72rem;
+  min-height: 30px;
+}
+
+.num-cell.red   { background: #b52525; color: #fff; }
+.num-cell.black { background: #1a1a1a; color: #fff; }
+.num-cell.green { background: #1c6e3d; color: #fff; }
+
+/* ── Column bets ──────────────────────────────────────── */
+.board-col-bets {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 34px;
+}
+
+.board-col-bets .board-cell {
+  flex: 1;
+  background: #0d4d20;
+  color: #c8a84b;
+  font-size: 0.65rem;
+}
+
+/* ── Dozens ───────────────────────────────────────────── */
+.board-dozens {
+  display: flex;
+  gap: 3px;
+}
+
+.board-dozens .board-cell {
+  flex: 1;
+  background: #0d4d20;
+  color: #e6edf3;
+  min-height: 28px;
+  font-size: 0.72rem;
+}
+
+/* ── Outside bets ─────────────────────────────────────── */
+.board-outside {
+  display: flex;
+  gap: 3px;
+}
+
+.outside-cell {
+  flex: 1;
+  background: #0d4d20;
+  color: #e6edf3;
+  min-height: 28px;
+  font-size: 0.72rem;
+}
+
+.bet-red   { background: #8b1a1a !important; color: #fff; font-size: 1.1rem !important; }
+.bet-black { background: #111 !important;    color: #ccc; font-size: 1.1rem !important; }

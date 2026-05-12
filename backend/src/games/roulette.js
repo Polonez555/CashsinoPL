@@ -7,18 +7,33 @@ function getColor(number) {
   return 'black';
 }
 
+function getDozen(number) {
+  if (number === 0) return null;
+  if (number <= 12) return 1;
+  if (number <= 24) return 2;
+  return 3;
+}
+
+function getColumn(number) {
+  if (number === 0) return null;
+  return number % 3 === 0 ? 3 : number % 3 === 2 ? 2 : 1;
+}
+
 function spin() {
   const number = Math.floor(Math.random() * 37); // 0–36
   const color = getColor(number);
   const parity = number === 0 ? null : number % 2 === 0 ? 'even' : 'odd';
   const range = number === 0 ? null : number <= 18 ? 'low' : 'high';
+  const dozen = getDozen(number);
+  const column = getColumn(number);
 
-  return { number, color, parity, range };
+  return { number, color, parity, range, dozen, column };
 }
 
 function evaluateBet(result, bet) {
-  const { number, color, parity, range } = result;
-  const { type, value, amount } = bet;
+  const { number, color, parity, range, dozen, column } = result;
+  const { type, amount } = bet;
+  const value = bet.value;
 
   let multiplier = 0;
 
@@ -35,6 +50,12 @@ function evaluateBet(result, bet) {
     case 'range':
       if (value === range) multiplier = 1;
       break;
+    case 'dozen':
+      if (parseInt(value) === dozen) multiplier = 2;
+      break;
+    case 'column':
+      if (parseInt(value) === column) multiplier = 2;
+      break;
     default:
       throw new Error(`Unknown bet type: ${type}`);
   }
@@ -46,4 +67,4 @@ function evaluateBet(result, bet) {
   };
 }
 
-module.exports = { spin, evaluateBet, getColor, RED_NUMBERS, BLACK_NUMBERS };
+module.exports = { spin, evaluateBet, getColor, getDozen, getColumn, RED_NUMBERS, BLACK_NUMBERS };

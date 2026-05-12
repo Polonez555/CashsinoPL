@@ -1,0 +1,45 @@
+.wheel-perspective {
+  perspective: 550px;
+  perspective-origin: 50% 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wheel-tilt {
+  transform: rotateX(44deg);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.wheel-canvas {
+  display: block;
+  border-radius: 50%;
+  box-shadow:
+    0 32px 64px rgba(0, 0, 0, 0.9),
+    0 0 0 3px #5a3e00,
+    0 0 0 6px #c8a84b40;
+}
+
+.wheel-table-surface {
+  width: 340px;
+  height: 18px;
+  background: radial-gradient(ellipse at center, #1e3a1e 0%, #0d1a0d 100%);
+  border-radius: 50%;
+  margin-top: -8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  opacity: 0.7;
+}
+
+/* Pointer / marker at the top */
+.wheel-tilt::before {
+  content: '▼';
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d4af37;
+  font-size: 14px;
+  filter: drop-shadow(0 0 4px #d4af37);
+  z-index: 10;
+}
